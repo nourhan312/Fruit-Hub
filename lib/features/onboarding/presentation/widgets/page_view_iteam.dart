@@ -4,6 +4,8 @@ import 'package:fruit_hub/core/locale/app_locale.dart';
 import 'package:fruit_hub/core/utils/app_colors.dart';
 import 'package:fruit_hub/core/utils/app_textstyles.dart';
 
+import '../../../../core/Routes/app_routes.dart';
+
 class PageViewItem extends StatelessWidget {
   const PageViewItem(
       {super.key,
@@ -39,7 +41,9 @@ class PageViewItem extends StatelessWidget {
                 child: Visibility(
                   visible: index == 0 ? true : false,
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, Routes.loginName);
+                    },
                     child: Text(
                       'skip'.tr(context),
                       style: TextStyles.regular16.copyWith(

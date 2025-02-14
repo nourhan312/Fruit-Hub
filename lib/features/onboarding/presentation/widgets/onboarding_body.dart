@@ -46,12 +46,14 @@ class _OnboardingBodyState extends State<OnboardingBody> {
         DotsIndicator(
           dotsCount: 2,
           decorator: DotsDecorator(
-              color: currentIndex == 1 ? AppColors.green : AppColors.grey,
-              activeColor: AppColors.green,
-              size: const Size.square(11.0),
-              activeSize: const Size(18.0, 9.0),
-              activeShape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(11.0))),
+            color: currentIndex == 1 ? AppColors.green : AppColors.grey,
+            activeColor: AppColors.green,
+            size: const Size.square(11.0),
+            activeSize: const Size(18.0, 9.0),
+            activeShape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(11.0),
+            ),
+          ),
           axis: Axis.horizontal,
           mainAxisAlignment: MainAxisAlignment.center,
         ),
@@ -65,6 +67,7 @@ class _OnboardingBodyState extends State<OnboardingBody> {
             maintainState: true,
             child: CustomTextButton(
                 onPressed: () {
+                  Navigator.pushReplacementNamed(context, Routes.loginName);
                 },
                 data: 'start'.tr(context))),
         SizedBox(
