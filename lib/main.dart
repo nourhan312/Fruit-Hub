@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:fruit_hub/core/Routes/app_routes.dart';
 
+import 'core/database/cache/cache_helper.dart';
 import 'core/locale/app_locale.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() {
+import 'core/services/service_lactor.dart';
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  setup();
+  await sl<CacheHelper>().init();
   runApp(const FruitHub());
 }
 

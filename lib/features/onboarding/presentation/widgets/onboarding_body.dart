@@ -4,8 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:fruit_hub/core/Routes/app_routes.dart';
 import 'package:fruit_hub/core/locale/app_locale.dart';
 import 'package:fruit_hub/core/utils/app_colors.dart';
+import 'package:fruit_hub/core/utils/app_strings.dart';
 import 'package:fruit_hub/core/widgets/custom_textbutton.dart';
 import 'package:fruit_hub/features/onboarding/presentation/widgets/custom_pageview.dart';
+
+import '../../../../core/database/cache/cache_helper.dart';
+import '../../../../core/services/service_lactor.dart';
 
 class OnboardingBody extends StatefulWidget {
   const OnboardingBody({super.key});
@@ -66,8 +70,12 @@ class _OnboardingBodyState extends State<OnboardingBody> {
             maintainSize: true,
             maintainState: true,
             child: CustomTextButton(
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, Routes.loginName);
+                onPressed: () async {
+                  await sl<CacheHelper>()
+                      .saveData(key: AppStrings.onBoardingKey, value: true)
+                      .then(((value) => Navigator.pushReplacementNamed(
+                          context, Routes.loginName)))
+                      .catchError((e) => print(e.toString()));
                 },
                 data: 'start'.tr(context))),
         SizedBox(

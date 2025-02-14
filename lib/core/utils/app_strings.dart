@@ -59,4 +59,6 @@ class AppStrings {
   static const NewPassword = "إنشاء كلمة مرور جديدة";
 
   static const changePasswordAlerady = "تم تغيير الباسورد بنجاح";
+
+  static const onBoardingKey = "OnBoarding";
 }
