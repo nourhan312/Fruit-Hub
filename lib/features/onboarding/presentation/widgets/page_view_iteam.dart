@@ -1,10 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruit_hub/core/locale/app_locale.dart';
 import 'package:fruit_hub/core/utils/app_colors.dart';
 import 'package:fruit_hub/core/utils/app_textstyles.dart';
 
 import '../../../../core/Routes/app_routes.dart';
+import '../../../../core/bloc/global_cubit.dart';
 
 class PageViewItem extends StatelessWidget {
   const PageViewItem(
@@ -53,12 +57,39 @@ class PageViewItem extends StatelessWidget {
                   ),
                 ),
               ),
+              Positioned(
+                top: 10,
+                left: 10,
+                child: Visibility(
+                  visible: index == 0 ? true : false,
+                  child: CupertinoSlidingSegmentedControl(
+                      children: <int, Widget>{
+                        0: Text(
+                          'ar'.tr(context),
+                          style: TextStyles.regular16.copyWith(
+                            color: AppColors.grey,
+                          ),
+                        ),
+                        1: Text(
+                          'en'.tr(context),
+                          style: TextStyles.regular16.copyWith(
+                            color: AppColors.grey,
+                          ),
+                        ),
+                      },
+                      onValueChanged: (index) => index == 0
+                          ? BlocProvider.of<GlobalCubit>(context)
+                              .changeLanguage('ar')
+                          : BlocProvider.of<GlobalCubit>(context)
+                              .changeLanguage('en')),
+                ),
+              ),
             ],
           ),
         ),
         SizedBox(height: MediaQuery.of(context).size.height * 0.08),
         title,
-        SizedBox(height: 24),
+        SizedBox(height: 24.h),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 23),
           child: Text(

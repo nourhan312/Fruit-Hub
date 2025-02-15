@@ -1,6 +1,7 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruit_hub/core/Routes/app_routes.dart';
 import 'package:fruit_hub/core/locale/app_locale.dart';
 import 'package:fruit_hub/core/utils/app_colors.dart';
@@ -79,7 +80,7 @@ class _OnboardingBodyState extends State<OnboardingBody> {
                 },
                 data: 'start'.tr(context))),
         SizedBox(
-          height: 43,
+          height: 43.h,
         )
       ],
     );

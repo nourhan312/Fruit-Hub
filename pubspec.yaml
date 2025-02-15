@@ -19,7 +19,7 @@ dependencies:
   dots_indicator: ^4.0.0
   get_it: ^8.0.3
   flutter_bloc: ^9.0.0
-
+  flutter_screenutil: ^5.9.3
 
 
 
