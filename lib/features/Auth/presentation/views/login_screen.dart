@@ -12,14 +12,17 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () {}, icon: const Icon(Icons.arrow_back_ios)),
+            onPressed: () {
+              Navigator.pop(context);
+            }, icon: const Icon(Icons.arrow_back_ios)),
         centerTitle: true,
         title: Text(
+
           'login'.tr(context),
           style: TextStyles.bold19,
         ),
       ),
-      body: SafeArea(child: LoginBody()),
+      body: SingleChildScrollView(child: SafeArea(child: LoginBody())),
     );
   }
 }

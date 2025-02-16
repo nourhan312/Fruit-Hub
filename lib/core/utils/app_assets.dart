@@ -11,4 +11,7 @@ class AppAssets {
   static const String imagesLogo = 'assets/images/logo.svg';
   static const String imagesPineappleCuate =
       'assets/images/pineapple-cuate 1.svg';
+  static const String appleIcon = 'assets/images/apple_icon.svg';
+  static const String googleIcon = 'assets/images/google.svg';
+  static const String facebookIcon = 'assets/images/facebook.svg';
 }

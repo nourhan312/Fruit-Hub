@@ -1,0 +1,2 @@
+D:/fruit_hub/android/app/.cxx/Debug/o3j5l636/x86/CMakeFiles/edit_cache.dir
+D:/fruit_hub/android/app/.cxx/Debug/o3j5l636/x86/CMakeFiles/rebuild_cache.dir
