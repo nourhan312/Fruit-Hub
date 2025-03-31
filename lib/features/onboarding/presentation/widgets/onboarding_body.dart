@@ -74,24 +74,24 @@ class _OnboardingBodyState extends State<OnboardingBody>
                 SizedBox(
                     height: 29
                 ),
-                Visibility(
-                    visible: currentIndex == 1,
-                    maintainAnimation: true,
-                    maintainSize: true,
-                    maintainState: true,
-                    child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: CustomTextButton(
-                            onPressed: () async
-                            {
-                                await sl<CacheHelper>()
-                                    .saveData(key: AppStrings.onBoardingKey, value: true)
-                                    .then((( value) => Navigator.pushReplacementNamed(
-                                            context, Routes.loginName)))
-                                    .catchError(( e) => print(e.toString()));
-                            },
-                            data: 'start'.tr(context))
-                    )),
+                Padding(
+                  padding: const EdgeInsets.symmetric( horizontal: 8.0),
+                  child: Visibility(
+                      visible: currentIndex == 1,
+                      maintainAnimation: true,
+                      maintainSize: true,
+                      maintainState: true,
+                      child: CustomTextButton(
+                          onPressed: () async
+                          {
+                              await sl<CacheHelper>()
+                                  .saveData(key: AppStrings.onBoardingKey, value: true)
+                                  .then((( value) => Navigator.pushReplacementNamed(
+                                          context, Routes.loginName)))
+                                  .catchError(( e) => print(e.toString()));
+                          },
+                          data: 'start'.tr(context))),
+                ),
                 SizedBox(
                     height: 43.h
                 )
