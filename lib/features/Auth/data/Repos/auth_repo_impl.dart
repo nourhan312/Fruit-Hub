@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
-import 'package:fruit_hub/errors/exceptions.dart';
 
-import 'package:fruit_hub/errors/failures.dart';
 import 'package:fruit_hub/features/Auth/data/models/user_model.dart';
 
 import 'package:fruit_hub/features/Auth/domain/entities/user_entity.dart';
 
+import '../../../../core/errors/exceptions.dart';
+import '../../../../core/errors/failures.dart';
 import '../../../../core/services/firebase_auth_service.dart';
 import '../../domain/repos/auth_repo.dart';
 
@@ -24,6 +24,6 @@ class AuthRepoImpl extends AuthRepo {
       return Right(UserModel.fromFirebaseUser(user));
     } on CustomException catch (e) {
       return Left(ServerFailure(message: e.message));
-
+    }
   }
 }
