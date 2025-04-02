@@ -47,5 +47,6 @@
   "newPassword": "New Password",
   "enterNewPassword": "Create a new password to log in",
   "NewPassword": "Create New Password",
-  "changePasswordAlerady": "Password changed successfully"
+  "changePasswordAlerady": "Password changed successfully",
+  "validation.terms_required" : "You must accept the terms and conditions"
 }

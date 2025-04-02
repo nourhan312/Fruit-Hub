@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 
 import 'package:fruit_hub/features/Auth/data/models/user_model.dart';
@@ -23,6 +25,7 @@ class AuthRepoImpl extends AuthRepo {
       var user = await _authService.signInWithEmailAndPassword(email, password);
       return Right(UserModel.fromFirebaseUser(user));
     } on CustomException catch (e) {
+      log("Exception in Auth Repo.createUserWithEmailAndPassword  : ${e.message}");
       return Left(ServerFailure(message: e.message));
     }
   }

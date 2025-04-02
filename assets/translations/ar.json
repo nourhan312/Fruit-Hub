@@ -47,5 +47,6 @@
   "newPassword": "كلمة المرور الجديدة",
   "enterNewPassword": "قم بإنشاء كلمة مرور جديدة لتسجيل الدخول",
   "NewPassword": "إنشاء كلمة مرور جديدة",
-  "changePasswordAlerady": "تم تغيير الباسورد بنجاح"
+  "changePasswordAlerady": "تم تغيير الباسورد بنجاح",
+  "validation.terms_required" : "يجب عليك قبول الشروط والأحكام"
 }

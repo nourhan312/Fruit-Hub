@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:fruit_hub/core/locale/app_locale.dart';
 import 'package:fruit_hub/core/utils/app_colors.dart';
-
 import '../../../../core/utils/app_textstyles.dart';
 
 class TermsAndConditions extends StatefulWidget {
-  const TermsAndConditions({super.key});
+  const TermsAndConditions({super.key, required this.onChanged});
+  final ValueChanged<bool> onChanged;
 
   @override
   State<TermsAndConditions> createState() => _TermsAndConditionsState();
@@ -13,6 +13,7 @@ class TermsAndConditions extends StatefulWidget {
 
 class _TermsAndConditionsState extends State<TermsAndConditions> {
   bool isChecked = false;
+
   @override
   Widget build(BuildContext context) {
     return Transform.translate(
@@ -20,10 +21,11 @@ class _TermsAndConditionsState extends State<TermsAndConditions> {
       child: Row(
         children: [
           Checkbox(
-              value: true,
+              value: isChecked,
               onChanged: (value) {
                 setState(() {
                   isChecked = value!;
+                  widget.onChanged(value);
                 });
               },
               activeColor: AppColors.green),

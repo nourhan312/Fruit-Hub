@@ -24,6 +24,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  late bool isChecked = false;
 
   @override
   void dispose() {
@@ -112,7 +113,11 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                     },
                   ),
                 ),
-                TermsAndConditions(),
+                TermsAndConditions(
+                  onChanged: (value) {
+                    isChecked = value;
+                  },
+                ),
                 SizedBox(height: 30.h),
                 BlocBuilder<SignupCubit, SignupState>(
                     builder: (context, state) {
@@ -121,13 +126,27 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                     data: state is SignupLoading ? '' : 'signUp'.tr(context),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        context
-                            .read<SignupCubit>()
-                            .createUserWithEmailAndPassword(
-                              email: _emailController.text,
-                              password: _passwordController.text,
-                              name: _fullNameController.text,
-                            );
+                        _formKey.currentState!.save();
+                        if (!isChecked) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'validation.terms_required'.tr(context),
+                                style: TextStyles.regular16
+                                    .copyWith(color: AppColors.white),
+                              ),
+                              backgroundColor: AppColors.green,
+                            ),
+                          );
+                        } else {
+                          context
+                              .read<SignupCubit>()
+                              .createUserWithEmailAndPassword(
+                                email: _emailController.text,
+                                password: _passwordController.text,
+                                name: _fullNameController.text,
+                              );
+                        }
                       }
                     },
                   );
