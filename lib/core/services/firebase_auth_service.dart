@@ -8,7 +8,7 @@ class FirebaseAuthService {
   // Firebase authentication service implementation
   // This class will handle user authentication using Firebase
 
-  Future<User> signInWithEmailAndPassword(String email, String password) async {
+  Future<User> signupWithEmailAndPassword(String email, String password) async {
     try {
       final credential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -50,6 +50,42 @@ class FirebaseAuthService {
         throw CustomException(message: 'An unknown error occurred.');
       }
     } catch (e) {
+      throw CustomException(message: 'An unknown error occurred.');
+    }
+  }
+
+  Future<User> signInWithEmailAndPassword(
+    String email,
+    String password,
+  ) async {
+    try {
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return credential.user!;
+    } on FirebaseAuthException catch (e) {
+      log("Exception in Authentication Service.signInWithEmailAndPassword  : ${e.code}");
+      if (e.code == 'user-not-found') {
+        throw CustomException(message: "The password or email is invalid ");
+      } else if (e.code == 'wrong-password') {
+        throw CustomException(message: 'The password or email is invalid ');
+      } else if (e.code == 'invalid-credential') {
+        throw CustomException(message: ' The password or email is invalid');
+      } else if (e.code == 'network-request-failed') {
+        throw CustomException(
+            message: 'Network error, please check your connection.');
+      } else if (e.code == 'too-many-requests') {
+        throw CustomException(
+            message: 'Too many requests. Please wait a moment and try again.');
+      } else if (e.code == 'operation-not-allowed') {
+        throw CustomException(
+            message: 'Signing in with Email and Password is not enabled.');
+      } else {
+        throw CustomException(message: 'An unknown error occurred.');
+      }
+    } catch (e) {
+      log("Exception in Authentication Service.signInWithEmailAndPassword  : ${e.toString()}");
       throw CustomException(message: 'An unknown error occurred.');
     }
   }

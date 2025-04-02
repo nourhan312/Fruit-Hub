@@ -5,12 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruit_hub/core/locale/app_locale.dart';
 import 'package:fruit_hub/core/widgets/custom_textbutton.dart';
 import 'package:fruit_hub/core/widgets/custom_textformfield.dart';
-import 'package:fruit_hub/features/Auth/presentation/signup-cubit/signup_cubit.dart';
 import 'package:fruit_hub/features/Auth/presentation/widgets/terms_and_conditions.dart';
 
 import '../../../../core/Routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_textstyles.dart';
+import '../cubits/signup-cubit/signup_cubit.dart';
 
 class SignUpViewBody extends StatefulWidget {
   const SignUpViewBody({super.key});
@@ -64,10 +64,10 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                     hintText: "fullName".tr(context),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'validation.name_required'.tr(context);
+                        return 'name_required'.tr(context);
                       }
                       if (value.length < 3) {
-                        return 'validation.name_min_length'.tr(context);
+                        return 'name_min_length'.tr(context);
                       }
                       return null;
                     },
@@ -76,11 +76,11 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                 CustomTextFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'validation.email_required'.tr(context);
+                        return 'email_required'.tr(context);
                       }
                       if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
                           .hasMatch(value)) {
-                        return 'validation.email_invalid'.tr(context);
+                        return 'email_invalid'.tr(context);
                       }
                       return null;
                     },
@@ -90,10 +90,10 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                 CustomTextFormField(
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'validation.password_required'.tr(context);
+                      return 'password_required'.tr(context);
                     }
                     if (value.length < 6) {
-                      return 'validation.password_min_length'.tr(context);
+                      return 'password_min_length'.tr(context);
                     }
                     return null;
                   },

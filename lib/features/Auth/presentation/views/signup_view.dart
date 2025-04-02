@@ -5,7 +5,7 @@ import 'package:fruit_hub/features/Auth/presentation/widgets/signup_view_body.da
 
 import '../../../../core/services/service_lactor.dart';
 import '../../../../core/utils/app_textstyles.dart';
-import '../signup-cubit/signup_cubit.dart';
+import '../cubits/signup-cubit/signup_cubit.dart';
 
 class SignupView extends StatelessWidget {
   const SignupView({super.key});

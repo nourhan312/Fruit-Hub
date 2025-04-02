@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruit_hub/features/Auth/presentation/views/forget_password.dart';
-import 'package:fruit_hub/features/Auth/presentation/views/login_screen.dart';
+import 'package:fruit_hub/features/Auth/presentation/views/login_view.dart';
 import 'package:fruit_hub/features/Auth/presentation/views/new_password.dart';
 import 'package:fruit_hub/features/Auth/presentation/views/password_recovery.dart';
 

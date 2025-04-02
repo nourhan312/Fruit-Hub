@@ -22,10 +22,24 @@ class AuthRepoImpl extends AuthRepo {
   }) async {
     try {
       // need to convert user to user entity
-      var user = await _authService.signInWithEmailAndPassword(email, password);
+      var user = await _authService.signupWithEmailAndPassword(email, password);
       return Right(UserModel.fromFirebaseUser(user));
     } on CustomException catch (e) {
       log("Exception in Auth Repo.createUserWithEmailAndPassword  : ${e.message}");
+      return Left(ServerFailure(message: e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserEntity>> signInWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      var user = await _authService.signInWithEmailAndPassword(email, password);
+      return Right(UserModel.fromFirebaseUser(user));
+    } on CustomException catch (e) {
+      log("Exception in Auth Repo.signInWithEmailAndPassword  : ${e.message}");
       return Left(ServerFailure(message: e.message));
     }
   }

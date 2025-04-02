@@ -1,8 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:fruit_hub/features/Auth/domain/repos/auth_repo.dart';
-import 'package:meta/meta.dart';
 
-import '../../domain/entities/user_entity.dart';
+import '../../../domain/entities/user_entity.dart';
 
 part 'signup_state.dart';
 
