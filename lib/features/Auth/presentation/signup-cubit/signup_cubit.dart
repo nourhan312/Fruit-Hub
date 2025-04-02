@@ -10,6 +10,7 @@ class SignupCubit extends Cubit<SignupState> {
   SignupCubit(this.authRepo) : super(SignupInitial());
 
   final AuthRepo authRepo;
+  bool isPasswordVisible = true;
 
   Future<void> createUserWithEmailAndPassword({
     required String email,
@@ -26,5 +27,10 @@ class SignupCubit extends Cubit<SignupState> {
       (failure) => emit(SignupError(error: failure.message)),
       (user) => emit(SignupSuccess(user: user)),
     );
+  }
+
+  void passwordVisibility() {
+    isPasswordVisible = !isPasswordVisible;
+    emit(PasswordVisibilityState());
   }
 }

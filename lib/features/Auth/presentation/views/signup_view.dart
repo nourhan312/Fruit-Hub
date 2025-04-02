@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hub/core/locale/app_locale.dart';
-import 'package:fruit_hub/features/Auth/presentation/views/signup_view_body.dart';
+import 'package:fruit_hub/features/Auth/presentation/widgets/signup_view_body.dart';
 
 import '../../../../core/services/service_lactor.dart';
 import '../../../../core/utils/app_textstyles.dart';
