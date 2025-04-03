@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../errors/exceptions.dart';
 
@@ -88,5 +90,44 @@ class FirebaseAuthService {
       log("Exception in Authentication Service.signInWithEmailAndPassword  : ${e.toString()}");
       throw CustomException(message: 'An unknown error occurred.');
     }
+  }
+
+  Future<void> signOut() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+    } catch (e) {
+      log("Exception in Authentication Service.signOut  : ${e.toString()}");
+      throw CustomException(message: 'An unknown error occurred.');
+    }
+  }
+
+  Future<User> signInWithGoogle() async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    return await (FirebaseAuth.instance.signInWithCredential(credential))
+        .then((value) => value.user!);
+  }
+
+  Future<User> signInWithFacebook() async {
+    final LoginResult loginResult = await FacebookAuth.instance.login();
+
+    // Create a credential from the access token
+    final OAuthCredential facebookAuthCredential =
+        FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
+
+    // Once signed in, return the UserCredential
+    return FirebaseAuth.instance
+        .signInWithCredential(facebookAuthCredential)
+        .then((value) {
+      return value.user!;
+    });
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -186,21 +188,27 @@ class _LoginBodyState extends State<LoginBody> {
                 SocialButton(
                     img: AppAssets.googleIcon,
                     text: 'SignWithGoogle'.tr(context),
-                    onPressed: () {}),
+                    onPressed: () {
+                      context.read<SigninCubit>().signInWithGoogle();
+                    }),
                 SizedBox(
                   height: 16.h,
                 ),
                 SocialButton(
                     img: AppAssets.facebookIcon,
                     text: 'SignWithFaceBook'.tr(context),
-                    onPressed: () {}),
+                    onPressed: () {
+                      context.read<SigninCubit>().signInWithFacebook();
+                    }),
                 SizedBox(
                   height: 16.h,
                 ),
-                SocialButton(
-                    img: AppAssets.appleIcon,
-                    text: 'SignWithApple'.tr(context),
-                    onPressed: () {}),
+                Platform.isIOS
+                    ? SocialButton(
+                        img: AppAssets.appleIcon,
+                        text: 'SignWithApple'.tr(context),
+                        onPressed: () {})
+                    : SizedBox(),
               ],
             ),
           ),

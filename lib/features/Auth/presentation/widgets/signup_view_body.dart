@@ -97,7 +97,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                     }
                     return null;
                   },
-                  hintText: "password".tr(context),
+                  hintText: ("password").tr(context),
                   controller: _passwordController,
                   obscureText: context.watch<SignupCubit>().isPasswordVisible,
                   suffixIcon: BlocBuilder<SignupCubit, SignupState>(

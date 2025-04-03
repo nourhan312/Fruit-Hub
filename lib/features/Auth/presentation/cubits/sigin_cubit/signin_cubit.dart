@@ -34,6 +34,40 @@ class SigninCubit extends Cubit<SigninState> {
     }
   }
 
+  void signInWithGoogle() async {
+    emit(SigninWithGoogleLoading());
+    try {
+      final result = await authRepo.signInWithGoogle();
+      result.fold(
+        (failure) {
+          emit(SigninWithGoogleFailure(message: failure.message));
+        },
+        (user) {
+          emit(SigninWithGoogleSuccess(user: user));
+        },
+      );
+    } catch (e) {
+      emit(SigninWithGoogleFailure(message: e.toString()));
+    }
+  }
+
+  void signInWithFacebook() async {
+    emit(SigninWithFacebookLoading());
+    try {
+      final result = await authRepo.signInWithFacebook();
+      result.fold(
+        (failure) {
+          emit(SigninWithFacebookFailure(message: failure.message));
+        },
+        (user) {
+          emit(SigninWithFacebookSuccess(user: user));
+        },
+      );
+    } catch (e) {
+      emit(SigninWithFacebookFailure(message: e.toString()));
+    }
+  }
+
   void passwordVisibility() {
     isPasswordVisible = !isPasswordVisible;
     emit(PasswordVisibilityState());
