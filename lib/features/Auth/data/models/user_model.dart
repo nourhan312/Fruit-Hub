@@ -16,4 +16,12 @@ class UserModel extends UserEntity {
       phoneNumber: user.phoneNumber ?? '',
     );
   }
+  factory UserModel.fromMap(Map<String, dynamic> map) {
+    return UserModel(
+      uId: map['uId'],
+      name: map['name'],
+      email: map['email'],
+      phoneNumber: map['phoneNumber'],
+    );
+  }
 }

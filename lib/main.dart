@@ -30,26 +30,28 @@ class FruitHub extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-        designSize: (const Size(375, 812)),
-        builder: (_, child) =>
-            BlocBuilder<GlobalCubit, GlobalState>(builder: (context, state) {
-              return MaterialApp(
-                  theme: ThemeData(
-                      fontFamily: 'Cairo',
-                      colorScheme:
-                          ColorScheme.fromSeed(seedColor: AppColors.white)),
-                  localizationsDelegates: [
-                    GlobalMaterialLocalizations.delegate,
-                    GlobalWidgetsLocalizations.delegate,
-                    GlobalCupertinoLocalizations.delegate,
-                    AppLocalizations.delegate
-                  ],
-                  supportedLocales: [const Locale('ar'), const Locale('en')],
-                  locale: Locale(
-                      BlocProvider.of<GlobalCubit>(context).languageCode),
-                  debugShowCheckedModeBanner: false,
-                  onGenerateRoute: AppRoutes.onGeneratedRoute,
-                  initialRoute: Routes.splashName);
-            }));
+      designSize: (const Size(375, 812)),
+      builder: (_, child) => BlocBuilder<GlobalCubit, GlobalState>(
+        builder: (context, state) {
+          return MaterialApp(
+              theme: ThemeData(
+                  fontFamily: 'Cairo',
+                  colorScheme:
+                      ColorScheme.fromSeed(seedColor: AppColors.white)),
+              localizationsDelegates: [
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+                AppLocalizations.delegate
+              ],
+              supportedLocales: [const Locale('ar'), const Locale('en')],
+              locale:
+                  Locale(BlocProvider.of<GlobalCubit>(context).languageCode),
+              debugShowCheckedModeBanner: false,
+              onGenerateRoute: AppRoutes.onGeneratedRoute,
+              initialRoute: Routes.splashName);
+        },
+      ),
+    );
   }
 }

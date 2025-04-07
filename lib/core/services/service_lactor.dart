@@ -1,4 +1,6 @@
 import 'package:fruit_hub/core/bloc/global_cubit.dart';
+import 'package:fruit_hub/core/services/database_service.dart';
+import 'package:fruit_hub/core/services/firestore_service.dart';
 import 'package:fruit_hub/features/Auth/domain/repos/auth_repo.dart';
 import 'package:get_it/get_it.dart';
 
@@ -17,8 +19,12 @@ Future<void> setup() async {
 
   sl.registerLazySingleton<CacheHelper>(() => CacheHelper());
   sl.registerLazySingleton<FirebaseAuthService>(() => FirebaseAuthService());
+  sl.registerLazySingleton<DatabaseService>(() => FireStoreService());
   sl.registerLazySingleton<AuthRepo>(
-    () => AuthRepoImpl(sl<FirebaseAuthService>()),
+    () => AuthRepoImpl(
+      sl<FirebaseAuthService>(),
+      sl<DatabaseService>(),
+    ),
   );
   sl.registerLazySingleton<SignupCubit>(() => SignupCubit(sl<AuthRepo>()));
   sl.registerLazySingleton<SigninCubit>(() => SigninCubit(sl<AuthRepo>()));

@@ -7,6 +7,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import '../errors/exceptions.dart';
 
 class FirebaseAuthService {
+  // FirebaseAuthService is a singleton class that provides methods for user authentication
   // Firebase authentication service implementation
   // This class will handle user authentication using Firebase
 
@@ -99,6 +100,10 @@ class FirebaseAuthService {
       log("Exception in Authentication Service.signOut  : ${e.toString()}");
       throw CustomException(message: 'An unknown error occurred.');
     }
+  }
+
+  Future deleteUser() {
+    return FirebaseAuth.instance.currentUser!.delete();
   }
 
   Future<User> signInWithGoogle() async {
