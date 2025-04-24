@@ -8,8 +8,15 @@ class FireStoreService implements DatabaseService {
   Future<void> addData({
     required String path,
     required Map<String, dynamic> data,
+    String? id,
   }) async {
-    await fireStore.collection(path).add(data);
+    if (id != null) {
+
+      await fireStore.collection(path).doc(id).set(data);
+      return;
+    } else {
+      await fireStore.collection(path).add(data);
+    }
   }
 
   @override
@@ -19,5 +26,14 @@ class FireStoreService implements DatabaseService {
   }) async {
     var data = await fireStore.collection(path).doc(id).get();
     return data.data() as Map<String, dynamic>;
+  }
+
+  @override
+  Future<bool> isUserExist({
+    required String path,
+    required String id,
+  }) async {
+    var data = await fireStore.collection(path).doc(id).get();
+    return data.exists;
   }
 }

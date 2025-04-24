@@ -51,6 +51,20 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
             ),
           );
         }
+        if (state is SignupSuccess) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'signup_success'.tr(context),
+                style: TextStyles.regular16.copyWith(
+                  color: AppColors.white,
+                ),
+              ),
+              backgroundColor: AppColors.green,
+            ),
+          );
+          Navigator.pop(context);
+        }
       },
       child: SingleChildScrollView(
         child: Padding(

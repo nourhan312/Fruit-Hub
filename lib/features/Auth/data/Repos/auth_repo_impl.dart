@@ -75,7 +75,13 @@ class AuthRepoImpl extends AuthRepo {
     try {
       user = await _authService.signInWithGoogle();
       var userEntity = UserModel.fromFirebaseUser(user);
-      addUser(user: userEntity);
+      var isUserExist = await _databaseService.isUserExist(
+          path: BackendEndPoints.userCollection, id: user.uid);
+      if (!isUserExist) {
+        await addUser(user: userEntity);
+      } else {
+        await getUser(uId: user.uid);
+      }
       return Right(userEntity);
     } on CustomException catch (e) {
       if (user != null) {
@@ -102,6 +108,7 @@ class AuthRepoImpl extends AuthRepo {
     await _databaseService.addData(
       path: BackendEndPoints.userCollection,
       data: user.toMap(),
+      id: user.uId,
     );
   }
 

@@ -4,8 +4,11 @@ abstract class DatabaseService {
   Future<void> addData(
       // path == collection Name
       {required String path,
-      required Map<String, dynamic> data});
+      required Map<String, dynamic> data,
+      String? id});
 
   Future<Map<String, dynamic>> getData(
       {required String path, required String id});
+
+  Future<bool> isUserExist({required String path, required String id});
 }

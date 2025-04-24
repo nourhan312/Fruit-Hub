@@ -31,7 +31,6 @@ class _LoginBodyState extends State<LoginBody> {
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
-    // TODO: implement dispose
     super.dispose();
   }
 
@@ -51,6 +50,10 @@ class _LoginBodyState extends State<LoginBody> {
               backgroundColor: AppColors.green,
             ),
           );
+        }
+        if (state is SigninSuccess) {
+          Navigator.pushNamedAndRemoveUntil(
+              context, Routes.homeName, (route) => false);
         }
       },
       child: SingleChildScrollView(

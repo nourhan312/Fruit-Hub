@@ -5,6 +5,7 @@ import 'package:fruit_hub/features/Auth/presentation/views/new_password.dart';
 import 'package:fruit_hub/features/Auth/presentation/views/password_recovery.dart';
 
 import '../../features/Auth/presentation/views/signup_view.dart';
+import '../../features/home/presentation/views/home_view.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
 
@@ -42,6 +43,8 @@ class AppRoutes {
 
       case Routes.newPassword:
         return MaterialPageRoute(builder: (context) => NewPassword());
+      case Routes.homeName:
+        return MaterialPageRoute(builder: (context) => const HomeView());
 
       default:
         return MaterialPageRoute(builder: (context) => NewPassword());
